@@ -5,7 +5,7 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-          <img alt='' src={photo} className="App-logo"  border="0"/>
+          <img alt='' src={photo} className="App-logo"  border="0" />
           <br/><br/>
           <img alt='' src={photo2} width={80}/> 
           <h2>도커 배포 성공 기원기</h2>
