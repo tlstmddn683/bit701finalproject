@@ -15,7 +15,7 @@ public class MemberDto {
 	private String myname;
 	private String myid;
 	private String mypass;
-	private String myadress;
+	private String myaddress;
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm",timezone = "Asia/Seoul")
 	private Timestamp gaipday;
 	
