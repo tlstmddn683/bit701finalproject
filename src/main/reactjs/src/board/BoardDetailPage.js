@@ -1,5 +1,5 @@
 import Axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 function BoardDetailPage(props) {
@@ -12,17 +12,30 @@ function BoardDetailPage(props) {
     const myid=sessionStorage.myid;
     const loginok=sessionStorage.loginok;
 
-    const selectData=()=>{
+    // const selectData=()=>{
+    //     const url=`/board/detail?num=${num}`;
+    //     Axios.get(url)
+    //     .then(res=>{
+    //         setDto(res.data);
+    //     })
+    // }
+
+    // useEffect(()=>{
+    //     selectData();       
+    // },[]);  
+    
+    const selectData=useCallback(()=>{
         const url=`/board/detail?num=${num}`;
         Axios.get(url)
         .then(res=>{
             setDto(res.data);
         })
-    }
+    },[num])
     
     useEffect(()=>{
-        selectData();
-    },[]);
+         selectData();       
+     },[selectData]); 
+
     return (
         <div style={{marginLeft:'10px',width:'600px'}}>
             <h5><b>{dto.subject}</b></h5>
