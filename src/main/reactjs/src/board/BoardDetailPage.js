@@ -3,8 +3,8 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 function BoardDetailPage(props) {
+    const [dto,setDto]=useState({});
     const {num,currentPage}=useParams();
-    const [dto,setDto]=useState(''); 
 
     const navi=useNavigate();
 
@@ -37,59 +37,57 @@ function BoardDetailPage(props) {
      },[selectData]); 
 
     return (
-        <div style={{marginLeft:'10px',width:'600px'}}>
+        <div style={{marginLeft:'30px',width:'600px'}}>
             <h5><b>{dto.subject}</b></h5>
             <h6>
-                <span>작성자: {dto.myname}({dto.myid})</span>
-                <span style={{float:'right',fontSize:'10px',color:'gray'}}>
-                    조회 {dto.readcount}
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span>작성자:
+                    {dto.myname}({dto.myid && dto.myid.substring(0,3)}***)</span>
+                <span style={{float:'right',color:'gray'}}>
+                    조회&nbsp;{dto.readcount}
+                    &nbsp;&nbsp;&nbsp;&nbsp;
                     {dto.writeday}
                 </span>
             </h6>
-           {
-            dto.photo==null?'':
-            <img alt='' src={`${photourl}${dto.photo}`}
-            style={{border:'1px solid gray',maxWidth:'500px'}}/>
-            
-           }
-           <br/><br/>
-           <pre>
-            {dto.content}
-           </pre>
-           <br/>
-           <div>
-            <button type='button' className='btn btn-outline-danger' 
-            style={{width:'80px',marginLeft:'10px'}} 
-            onClick={()=>navi("/board/form")}>글쓰기</button>
-
-            <button type='button' className='btn btn-outline-danger'
-             style={{width:'80px',marginLeft:'10px'}} 
-             onClick={()=>navi(`/board/list/${currentPage}`)}>목록</button>
             {
-            loginok!=null&&myid===dto.myid?
-            <button type='button' className='btn btn-outline-danger' 
-            style={{width:'80px',marginLeft:'10px'}}
-             onClick={()=>{
-                const url=`/board/delete?num=${dto.num}`;
-                Axios.delete(url)
-                .then(res=>{
-                    // 목록으로 이동
-                    navi(`/board/list/${currentPage}`);
-                })
-
-            }}>삭제</button>:''
+                dto.photo==null?'':
+                <img alt='' src={`${photourl}${dto.photo}`}
+                style={{border:'1px solid gray',maxWidth:'500px'}}/>
             }
-            {
-                loginok!=null&&myid===dto.myid?
-                <button type='button' className='btn btn-outline-danger' 
-                style={{width:'80px',marginLeft:'10px'}}
-                onClick={()=>{
+            <br/><br/>
+            <pre>{dto.content}</pre>
+            <br/>
+            <div>
+                <button type='button' className='btn btn-outline-danger'
+                style={{width:'80px',marginRight:'5px'}}
+                onClick={()=>navi("/board/form")}>글쓰기</button>
+               
+                <button type='button' className='btn btn-outline-danger'
+                style={{width:'80px',marginRight:'5px'}}
+                onClick={()=>navi(`/board/list/${currentPage}`)}>목록</button>
+               
+                {
+                    loginok!=null && myid===dto.myid?
+                    <button type='button' className='btn btn-outline-danger'
+                    style={{width:'80px',marginRight:'5px'}}
+                    onClick={()=>{
+                        const url=`/board/delete?num=${dto.num}`;
+                        Axios.delete(url)
+                        .then(res=>{
+                            //목록으로 이동
+                            navi(`/board/list/${currentPage}`);
+                        })
+                    }}>삭제</button>:''
+                }
 
-                }}>수정</button>:''
-            }
-        
-           </div>
+                {
+                    loginok!=null && myid===dto.myid?
+                    <button type='button' className='btn btn-outline-danger'
+                    style={{width:'80px',marginRight:'5px'}}
+                    onClick={()=>{
+
+                    }}>수정</button>:''
+                }
+            </div>
         </div>
     );
 }

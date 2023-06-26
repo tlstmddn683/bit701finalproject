@@ -1,32 +1,34 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import noimage from "../image/images.png";
+import noimage from '../image/images.png';
 
 function BoardRowList(props) {
-    const { idx, row, no, currentPage } = props;
-    const photoUrl1 = process.env.REACT_APP_BOARDURL1;
-    const photoUrl2 = process.env.REACT_APP_BOARDURL2;
-
+    const {idx,no,row,currentPage}=props;
+    const smallurl1=process.env.REACT_APP_SMALL_BOARDURL1;
+    const smallurl2=process.env.REACT_APP_SMALL_BOARDURL2;
+    
     return (
         <tr>
-            <td>{no - idx}</td>
-            <td> 
-                <NavLink
-                    to={`/board/detail/${row.num}/${currentPage}`}
-                    style={{ textDecoration: 'none', color: 'black', cursor: 'pointer' }}>
-                    {
-                    row.photo!=null?
-                        <img alt='' src={`${photoUrl1}${row.photo}${photoUrl2}`} 
-                         style={{ border: '1px solid gray' }}
-                         />: <img src={noimage} alt='' style={{width:'45px'}} />
-                    }
-                    &nbsp;
-                    <b>{row.subject}</b>
+            <td>{no-idx}</td>
+            <td>
+                <NavLink to={`/board/detail/${row.num}/${currentPage}`} 
+                style={{textDecoration:'none',color:'black',cursor:'pointer'}}>
+                 {/* 40x40 썸네일 이미지 나오게 하기(사진이 없을경우 noimage 로 대치) */}
+                {
+                    row.photo==null?
+                        <img alt='' src={noimage}
+                                style={{width:'40px',height:'40px',border:'1px solid black',
+                                marginRight:'10px'}}/>:
+                        <img alt='' src={`${smallurl1}${row.photo}${smallurl2}`}
+                                style={{border:'1px solid black',
+                                marginRight:'10px'}}/>
+                }
+                 <b>{row.subject}</b>                 
                 </NavLink>
             </td>
             <td>{row.myname}</td>
-            <td>{row.writeday}</td>
-            <td>{row.readcount}</td>
+            <td align='center'>{row.writeday.substring(0,10)}</td>
+            <td align='center'>{row.readcount}</td>
         </tr>
     );
 }

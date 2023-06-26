@@ -26,9 +26,8 @@ import naver.cloud.NcpObjectStorageService;
 public class BoardController {
 	@Autowired
 	private NcpObjectStorageService storageService;
-
-	//버켓이름지정
-	private String bucketName="bit701-bucket-56";//각자 자기 버켓이름
+	// 버켓이름 지정
+	private String bucketName = "bit701-bucket-115";// 각자 자기의 버켓이름
 	
 	//사진 업로드할 변수
 	String photo;
