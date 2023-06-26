@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import { LoginForm, MemberForm, MemberList } from './member';
 import { BoardForm, BoardList } from './board';
 import errimg from './image/404.png';
+import BoardDetailPage from './board/BoardDetailPage';
 function RouteMain(props) {
     return (
         <div>
@@ -21,6 +22,7 @@ function RouteMain(props) {
                      <Route path='form' element={<BoardForm/>}/>
                      <Route path='list' element={<BoardList/>}/>
                      <Route path='list/:currentPage' element={<BoardList/>}/>
+                     <Route path='detail/:num/:currentPage' element={<BoardDetailPage/>}/>
 
                 </Route>
                 <Route path='*' element={
