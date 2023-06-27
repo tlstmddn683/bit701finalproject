@@ -25,7 +25,7 @@ function ReducerComp1(props) {
     //0은 money 변송의 초기값 
     return (
         <div>
-            <h1>useReducer 은행에 오신것을 환영합니다</h1>
+            <h1>[useReducer] 은행에 오신것을 환영합니다</h1>
             <h3>잔고:{money}</h3>
             <input type='number' value={number} step={1000} onChange={(e)=>setNumber(e.target.value)}/>
             <br/><br/>
