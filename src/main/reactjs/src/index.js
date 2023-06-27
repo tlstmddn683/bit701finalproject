@@ -10,6 +10,7 @@ root.render(
   //   {/* <App /> */}
   //   <Root/>
   // </React.StrictMode>
+  
   <div>
     <Root/>
   </div>

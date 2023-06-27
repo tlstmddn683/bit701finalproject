@@ -41,7 +41,7 @@ function BoardDetailPage(props) {
             <h5><b>{dto.subject}</b></h5>
             <h6>
                 <span>작성자:
-                    {dto.myname}({dto.myid && dto.myid.substring(0,3)}***)</span>
+                    {dto.myname}({dto.myid && dto.myid.substring(0,3)}*****)</span>
                 <span style={{float:'right',color:'gray'}}>
                     조회&nbsp;{dto.readcount}
                     &nbsp;&nbsp;&nbsp;&nbsp;

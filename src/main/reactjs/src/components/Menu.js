@@ -9,6 +9,12 @@ function Menu(props) {
                 <NavLink to={"/"}>Home</NavLink>
             </li>
             <li>
+                <NavLink to={"/reducer1"}>Reducer1</NavLink>
+            </li>
+            <li>
+                <NavLink to={"/reducer2"}>Reducer2</NavLink>
+            </li>
+            <li>
                 <NavLink to={"/member/form"}>회원가입</NavLink>
             </li>
             <li>
